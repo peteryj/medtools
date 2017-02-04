@@ -3,9 +3,32 @@ package main
 import (
 	_ "github.com/peteryj/medtools/routers"
 	"github.com/astaxie/beego"
+	"github.com/astaxie/beego/logs"
     "runtime"
     "os/exec"
+    "flag"
+    "fmt"
 )
+
+const (
+    VERSION = "1.0"
+)
+
+var (
+    RunningPort string = ""
+)
+
+
+func init() {
+    runmode := beego.AppConfig.String("runmode")
+    if runmode == "dev" {
+        logs.SetLevel(logs.LevelDebug)
+    } else {
+        logs.SetLevel(logs.LevelInfo)
+    }
+
+    RunningPort = beego.AppConfig.String("httpport")
+}
 
 func open(url string) error{
     var cmd string
@@ -26,8 +49,27 @@ func open(url string) error{
     return exec.Command(cmd, args...).Start()
 }
 
+func pathMapping() {
+    beego.SetStaticPath("/assets", "static/metronic/assets")
+    beego.SetStaticPath("/js", "static/js")
+}
+
 func main() {
-    go open("http://localhost:8080/")
+
+    // cmd args
+    flagVersion := flag.Bool("v", false, "Print Version")
+    flag.Parse()
+
+    // handling cmd args
+    if *flagVersion {
+        fmt.Println(VERSION)
+        return
+    }
+
+    // run web app
+    pathMapping()
+
+    go open(fmt.Sprintf("http://localhost:%v/", RunningPort))
 	beego.Run()
 }
 

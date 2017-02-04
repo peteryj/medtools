@@ -69,18 +69,18 @@ func queryCC(title string) float64 {
     var result JSONRet
 
     if err := req.ToJSON(&result); err != nil {
-        logs.Error("query failed: %s", err)
+        logs.Error("query failed: %v", err)
         return -1
     }
 
     if result.Entities == nil || len(result.Entities) == 0 {
-        logs.Error("parse result %s failed: %s", result)
+        logs.Error("parse result %v failed: null", result)
         return -1
     }
 
     ss := result.Entities[0]
     if ss["CC"] == nil {
-        logs.Error("parse result %s failed: %s", result)
+        logs.Error("parse result %s failed: CC null", result)
         return -1
     }
 

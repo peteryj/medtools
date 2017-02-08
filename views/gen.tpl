@@ -210,7 +210,23 @@
                         <!-- BEGIN PAGE CONTENT INNER -->
                         <div class="page-content-inner">
                             <div class="note note-info">
-                                <p> 请输入待查询的论文标题，每行一个，仅限半角字符 </p>
+                                <h3><i class="icon-book-open"></i> 批量查询论文引用次数工具 </h3>
+                                <p class="font-blue-chmbray">
+                                <h4>功能</h4>
+                                <ul>
+                                <li>支持批量查询论文引用次数</li>
+                                <li>支持导出查询结果为xls/csv文件格式</li>
+                                </ul>
+                                </p>
+                                <p class="font-blue-chambray"> 
+                                <br />
+                                <h4>示例:</h4>  
+                                Xu T, Qin R, Zhou J, Yan Y, Lu Y, Zhang X, et al: <b>High bone sialoprotein (BSP) expression correlates with increased tumor grade and predicts a poorer prognosis of high-grade glioma patients. PLoS ONE 7:e48415, 2012</b> <br />
+                                只需输入：<br />
+                                <b>High bone sialoprotein (BSP) expression correlates with increased tumor grade and predicts a poorer prognosis of high-grade glioma patients</b>
+                                </p>
+                                <br />
+                                <p class="font-red"> 请输入待查询的论文标题，每行一个(仅限半角字符)；您也可以在自己的文本编辑器中进行编辑，保证每行一个论文标题，再拷贝粘贴到下方的文本框中。 </p>
                             </div>
                         </div>
                         <!-- END PAGE CONTENT INNER -->

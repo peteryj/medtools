@@ -86,7 +86,7 @@
                     <div class="container">
                         <!-- BEGIN PAGE TITLE -->
                         <div class="page-title">
-                            <h1>文献助手 v1.0 (by Xu Tao & Yang Jun)</h1>
+                            <h1>文献助手 v1.1 (by Xu Tao & Yang Jun)</h1>
                         </div>
                         <!-- END PAGE TITLE -->
                         <!-- BEGIN PAGE TOOLBAR -->
@@ -213,7 +213,7 @@
                                 <p class="font-blue-chmbray">
                                 <h4>功能</h4>
                                 <ul>
-                                <li>支持<b>批量</b>查询论文引用次数</li>
+                                <li>支持<b>批量</b>查询论文引用次数和文章标题</li>
                                 <li>支持导出查询结果为xls/csv文件格式</li>
                                 </ul>
                                 </p>
@@ -252,11 +252,29 @@
                                         <tr>
                                         <th>论文标题</th>
                                         <th>引用数(-1表示找不到论文)</th>
+                                        <th>引用文章标题</th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                         {{range .Result}}
-                                        <tr><td>{{.title}}</td><td>{{.cc}}</td></tr>
+                                        <tr>
+                                          <td>{{.title}}</td>
+                                          <td>{{.cc}}</td>
+                                          {{if gt .cc 0}}
+                                          <td>{{index .cclist 0}}</td>
+                                          {{else}}
+                                          <td></td>
+                                          {{end}}
+                                        </tr>
+                                        {{range $k, $v := .cclist}}
+                                        {{if gt $k 0}}
+                                        <tr>
+                                          <td></td>
+                                          <td></td>
+                                          <td>{{$v}}</td>
+                                        </tr>
+                                        {{end}}
+                                        {{end}}
                                         {{end}}
                                         </tbody>
                                         </table>
